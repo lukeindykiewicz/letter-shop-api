@@ -1,3 +1,3 @@
 # letter-shop-api
 
-Api for Letter Shop
+[swagger UI for Letter Shop API](http://lukeindykiewicz.com/letter-shop-api)
