@@ -1,0 +1,163 @@
+swagger: '2.0'
+
+info:
+  version: "0.1.0"
+  title: Letter Shop
+
+paths:
+
+  /cart/{cartId}:
+    get:
+      description: Show my cart
+      parameters:
+        -
+          name: cartId
+          in: path
+          description: Id of cart
+          required: true
+          type: string
+      responses:
+        200:
+          description: ok
+          schema:
+            type: object
+            properties:
+              letters:
+                type: string
+
+  /cart/{cartId}/{letters}:
+    put:
+      description: Sets (overwrites) letters in the cart
+      parameters:
+        -
+          name: cartId
+          in: path
+          description: Id of cart
+          required: true
+          type: string
+        -
+          name: letters
+          in: path
+          description: Letters that we want cart to have
+          required: true
+          type: string
+      responses:
+        200:
+          description: ok
+
+    post:
+      description: Adds letters to cart
+      parameters:
+        -
+          name: cartId
+          in: path
+          description: Id of cart
+          required: true
+          type: string
+        -
+          name: letters
+          in: path
+          description: Letters that we want to add to cart
+          required: true
+          type: string
+      responses:
+        200:
+          description: ok
+
+  /check/{cartId}:
+    get:
+      description: Check current cart total with given discount code
+      parameters:
+        -
+          name: cartId
+          in: path
+          description: Cart which should be checked
+          required: true
+          type: string
+        -
+          name: discountCode
+          in: query
+          description: Cart which should be checked
+          required: false
+          type: string
+      responses:
+        200:
+          description: ok
+          schema:
+            type: object
+            properties:
+              price:
+                type: number
+
+  /checkout/{cartId}:
+    post:
+      description: Checkout cart, generate receipt and empties cart
+      parameters:
+        -
+          name: cartId
+          in: path
+          description: Cart which should be checked
+          required: true
+          type: string
+        -
+          name: discountCode
+          in: body
+          description: Discount code
+          required: false
+          schema:
+            type: object
+            properties:
+              discoutCode:
+                type: string
+      responses:
+        200:
+          description: ok
+          schema:
+            type: object
+            properties:
+              price:
+                type: number
+              receiptId:
+                type: string
+
+  /price/{letter}:
+    put:
+      description: Set price for the letter (char)
+      parameters:
+        -
+          name: letter
+          in: path
+          description: Letter (char) for which price should be set
+          required: true
+          type: string
+        -
+          name: price
+          in: body
+          description: Cost of the letter
+          required: true
+          schema:
+            type: object
+            properties:
+              price:
+                type: number
+      responses:
+        200:
+          description: ok
+
+  /receipt:
+    get:
+      description: Get all receipts from system
+      responses:
+        200:
+          description: ok
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                receiptId:
+                  type: string
+                price:
+                  type: number
+                letters:
+                  type: string
