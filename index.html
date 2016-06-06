@@ -31,12 +31,7 @@
 
   <script type="text/javascript">
     $(function () {
-      var url = 'https://raw.githubusercontent.com/lukeindykiewicz/letter-shop-api/master/swagger.yaml'
-      if (url && url.length > 1) {
-        url = decodeURIComponent(url[1]);
-      } else {
-        url = "http://petstore.swagger.io/v2/swagger.json";
-      }
+      var url = 'https://raw.githubusercontent.com/lukeindykiewicz/letter-shop-api/master/swagger.yaml';
 
       // Pre load translate...
       if(window.SwaggerTranslator) {
@@ -52,7 +47,7 @@
               clientId: "your-client-id",
               clientSecret: "your-client-secret-if-required",
               realm: "your-realms",
-              appName: "your-app-name", 
+              appName: "your-app-name",
               scopeSeparator: ",",
               additionalQueryStringParams: {}
             });
