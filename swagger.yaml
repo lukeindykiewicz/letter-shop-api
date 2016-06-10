@@ -27,7 +27,7 @@ paths:
 
   /cart/{cartId}/{letters}:
     put:
-      description: Sets (overwrites) letters in the cart
+      description: Sets (overwrites) letters in the cart. When letters are not specified the cart will be made empty
       parameters:
         -
           name: cartId
